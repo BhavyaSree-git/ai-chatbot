@@ -13,7 +13,6 @@ const ProductSearch = () => {
       if (res.data.message) {
         setResponse(res.data.message);
       } else if (Array.isArray(res.data)) {
-        // Handle list responses
         setResponse(res.data.map(item => {
           if (item.brand) return `Brand: ${item.brand}`;
           if (item.name && item.category) return `Product: ${item.name} - Category: ${item.category}`;
@@ -21,7 +20,6 @@ const ProductSearch = () => {
           return `${item.name} - $${item.price}`;
         }).join("\n"));
       } else {
-        // Handle single object responses
         setResponse(`${res.data.name} - ${res.data.brand || res.data.category} - $${res.data.price}\n${res.data.description || ""}`);
       }
     } catch (error) {
